@@ -26,16 +26,12 @@ const connectDB = async () => {
 };
 connectDB();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With",
-  );
-  next();
-});
 app.use(express.json()); //make express can read data in json type
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 
 app.use("/api/posts", postRouter); //direct to routes/post
 app.use("/api/auth", authRouter); //direct to routes/auth
