@@ -28,7 +28,7 @@ connectDB();
 
 app.use(express.json()); //make express can read data in json type
 app.use(cors());
-app.all("/", function (req, res, next) {
+app.all("/login", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",

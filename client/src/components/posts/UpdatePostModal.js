@@ -11,7 +11,7 @@ import { PostContext } from "../../contexts/PostContext";
 function UpdatePostModal() {
   //context
   const {
-    postState: { post, posts },
+    postState: { post },
     showUpdatePostModal,
     setShowUpdatePostModal,
     updatePost,
