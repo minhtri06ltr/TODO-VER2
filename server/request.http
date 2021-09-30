@@ -1,0 +1,55 @@
+// use extension to send request from vscode
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "usernameTyping":"minhtri06ltrr",
+    "passwordTyping":"123"
+}
+
+###
+POST  http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "usernameTyping":"jim",
+    "passwordTyping":"jim"
+}
+
+###
+POST  http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzMDViZDAxOWJjOTBhMzRiYmQxYWIiLCJpYXQiOjE2MzI0NzE0NzV9.C4k2tS6-AKyW89TQ0mZUnSKcjN-pjwwm9yeJ4Nu2PwE
+
+{
+    "titleTyping":"ReactJS",
+    "descriptionTyping":"dang hoc",
+     "urlTyping":"https://www.youtube.com/watch?v=rgFd17fyM4A&t=424s",
+    "statusTyping":"To learn"
+   
+}
+
+###
+GET  http://localhost:5000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzMDViZDAxOWJjOTBhMzRiYmQxYWIiLCJpYXQiOjE2MzE3ODMzNTN9.tQ31ViUT-AFDbrlbxBRmjCgfdkn46do_qUd6PIINtvw
+
+
+###
+PUT  http://localhost:5000/api/posts/614d8a0652144e0d0c0bec61
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzMDViZDAxOWJjOTBhMzRiYmQxYWIiLCJpYXQiOjE2MzI0NzE0NzV9.C4k2tS6-AKyW89TQ0mZUnSKcjN-pjwwm9yeJ4Nu2PwE
+
+{
+    "titleTyping":"Nodejs",
+    "discriptionTyping":"ss",
+    "urlTyping":"https://www.facebook.com",
+    "statusTyping":"Learned"
+}
+
+###
+DELETE  http://localhost:5000/api/posts/61430977704a230d3026d36d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzMDViZDAxOWJjOTBhMzRiYmQxYWIiLCJpYXQiOjE2MzE3ODMzNTN9.tQ31ViUT-AFDbrlbxBRmjCgfdkn46do_qUd6PIINtvw
+
+###
+GET  http://localhost:5000/api/auth
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MTQzMDViZDAxOWJjOTBhMzRiYmQxYWIiLCJpYXQiOjE2MzE3ODMzNTN9.tQ31ViUT-AFDbrlbxBRmjCgfdkn46do_qUd6PIINtvw
