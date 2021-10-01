@@ -29,34 +29,8 @@ connectDB();
 app.options("*", cors());
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: [
-      "https://https://youthful-banach-a43e52.netlify.app",
-      "http://127.0.0.1:4200",
-    ],
-    credentials: true,
-  }),
-);
-app.use(function (req, res, next) {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "http://localhost:4200",
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    true,
-  );
-  res.header(
-    "Access-Control-Allow-Credentials",
-    true,
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-  );
-  next();
-});
+app.use(cors());
+
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 
