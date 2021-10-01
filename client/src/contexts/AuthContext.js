@@ -69,7 +69,7 @@ const AuthContextProvider = ({ children }) => {
         localStorage[LOCAL_STORAGE_TOKEN_NAME],
       );
     }
-    let config = {
+    const config = {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "*",
