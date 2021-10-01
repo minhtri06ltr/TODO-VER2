@@ -3,19 +3,6 @@ const Post = require("../models/Post");
 const router = express.Router();
 const verifyToken = require("../middleware/auth");
 
-router.use(function (req, res, next) {
-  //Enabling CORS
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,OPTIONS,POST,PUT",
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization",
-  );
-  next();
-});
 //routers Put api/posts
 //@desc Delete post
 //@access private
