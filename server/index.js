@@ -44,8 +44,13 @@ connectDB();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-app.options("*", cors());
+app.use(
+  cors({
+    origin:
+      "https://youthful-banach-a43e52.netlify.app",
+  }),
+);
+
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 
