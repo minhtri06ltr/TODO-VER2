@@ -74,7 +74,7 @@ const AuthContextProvider = ({ children }) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "*",
         "Access-Control-Allow-Headers":
-          "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+          "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization",
       },
     };
     try {
