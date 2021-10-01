@@ -12,7 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.12",
-    "nodemon": "^2.0.12",
     "touch-cli": "0.0.1"
   },
   "dependencies": {
@@ -21,6 +20,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.9"
+    "mongoose": "^5.13.9",
+    "nodemon": "^2.0.13"
   }
 }
