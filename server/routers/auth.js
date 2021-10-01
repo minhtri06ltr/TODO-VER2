@@ -4,7 +4,24 @@ const User = require("../models/User");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/auth");
-
+const cors = require(cors);
+router.use(cors());
+router.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    true,
+  );
+  res.header(
+    "Access-Control-Allow-Credentials",
+    true,
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE",
+  );
+  next();
+});
 //@route GET api/auth
 //@desc check if user is logged in
 //@access public
