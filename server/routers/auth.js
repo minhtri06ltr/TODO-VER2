@@ -5,6 +5,19 @@ const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/auth");
 
+router.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT",
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type,Accept, x-client-key, x-client-token, x-client-secret, Authorization",
+  );
+  next();
+});
 //@route GET api/auth
 //@desc check if user is logged in
 //@access public
