@@ -69,10 +69,16 @@ const AuthContextProvider = ({ children }) => {
         localStorage[LOCAL_STORAGE_TOKEN_NAME],
       );
     }
+    let config = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
     try {
       //get data form server contains success,user{createAt,id,username}
       const response = await axios.get(
         `${apiUrl}/auth`,
+        config,
       );
       if (response.data.success) {
         //Mark user has been logged
