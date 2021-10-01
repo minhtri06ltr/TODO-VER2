@@ -45,8 +45,7 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.options("/api/auth", cors());
-app.options("/api/posts", cors());
+app.options("*", cors());
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 
