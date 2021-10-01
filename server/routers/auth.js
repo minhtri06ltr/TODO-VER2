@@ -5,6 +5,19 @@ const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("../middleware/auth");
 
+router.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT",
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization",
+  );
+  next();
+});
 //@route GET api/auth
 //@desc check if user is logged in
 //@access public
@@ -14,21 +27,17 @@ router.get("/", verifyToken, async (req, res) => {
       req.userId,
     ).select("-password");
     if (!user)
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "User not found",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "User not found",
+      });
     res.json({ success: true, user });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Internal sever error",
-      });
+    res.status(500).json({
+      success: false,
+      message: "Internal sever error",
+    });
   }
 });
 
@@ -41,24 +50,20 @@ router.post("/register", async (req, res) => {
     req.body; //get value user send
   /*validation*/
   if (!usernameTyping || !passwordTyping)
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: "Missing username or password",
-      });
+    return res.status(400).json({
+      success: false,
+      message: "Missing username or password",
+    });
   try {
     //check existing username
     const userDB = await User.findOne({
       username: usernameTyping,
     }); //username: value in database - username's user type
     if (userDB)
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "User name already taken",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "User name already taken",
+      });
     //all good
     const hashedPassword = await argon2.hash(
       passwordTyping,
@@ -84,12 +89,10 @@ router.post("/register", async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Internal sever error",
-      });
+    res.status(500).json({
+      success: false,
+      message: "Internal sever error",
+    });
   }
 });
 //@routes POST api/auth/login
@@ -100,38 +103,32 @@ router.post("/login", async (req, res) => {
     req.body;
   /*Validation*/
   if (!usernameTyping || !passwordTyping)
-    return res
-      .status(400)
-      .json({
-        success: false,
-        message: "Missing username or password",
-      });
+    return res.status(400).json({
+      success: false,
+      message: "Missing username or password",
+    });
   try {
     //check existing user name
     const userDB = await User.findOne({
       username: usernameTyping,
     });
     if (!userDB)
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message:
-            "Incorrect user name or password",
-        });
+      return res.status(400).json({
+        success: false,
+        message:
+          "Incorrect user name or password",
+      });
     //user name found
     const passwordValid = await argon2.verify(
       userDB.password,
       passwordTyping,
     );
     if (!passwordValid)
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message:
-            "Incorrect user name or password",
-        });
+      return res.status(400).json({
+        success: false,
+        message:
+          "Incorrect user name or password",
+      });
     //All good
     const accessToken = jwt.sign(
       { userId: userDB._id },
@@ -144,12 +141,10 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Internal sever error",
-      });
+    res.status(500).json({
+      success: false,
+      message: "Internal sever error",
+    });
   }
 });
 module.exports = router;
