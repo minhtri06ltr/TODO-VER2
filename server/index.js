@@ -29,7 +29,15 @@ connectDB();
 app.options("*", cors());
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://https://youthful-banach-a43e52.netlify.app",
+      "http://127.0.0.1:4200",
+    ],
+    credentials: true,
+  }),
+);
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
