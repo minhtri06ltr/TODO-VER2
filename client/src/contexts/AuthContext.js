@@ -69,19 +69,11 @@ const AuthContextProvider = ({ children }) => {
         localStorage[LOCAL_STORAGE_TOKEN_NAME],
       );
     }
-    const config = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "*",
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization",
-      },
-    };
+
     try {
       //get data form server contains success,user{createAt,id,username}
       const response = await axios.get(
         `${apiUrl}/auth`,
-        config,
       );
       if (response.data.success) {
         //Mark user has been logged
@@ -126,7 +118,6 @@ const AuthContextProvider = ({ children }) => {
       const response = await axios.post(
         `${apiUrl}/auth/login`,
         userForm,
-        config,
       );
       if (response.data.success)
         //success = true
