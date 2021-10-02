@@ -20,10 +20,11 @@ const SinglePost = ({
       style={{
         display: "block",
         margin: "15px auto",
+        objectFit: "cover",
+        height: "100%",
+        width: "100%",
       }}
-      width="320px"
-      height="300px"
-      src="https://m.media-amazon.com/images/I/41UJhuSXsqL.jpg"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM2Nv_-i5l7-FIYU4PIhijX6N2R_2U8R9L0g&usqp=CAU"
     />
   );
   if (getYoutubeIdVideo(url) !== false) {
@@ -32,9 +33,10 @@ const SinglePost = ({
         style={{
           display: "block",
           margin: "15px auto",
+          objectFit: "cover",
+          height: "100%",
+          width: "100%",
         }}
-        width="320px"
-        height="300px"
         src={`https://img.youtube.com/vi/${getYoutubeIdVideo(
           url,
         )}/hqdefault.jpg`}
