@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
-
+import userIcon from "../../assets/person-circle.svg";
 const NavbarMenu = () => {
   const {
     authState: {
@@ -61,6 +61,17 @@ const NavbarMenu = () => {
             disabled
           >
             Welcome {username}
+            <img
+              src={userIcon}
+              style={{
+                filter:
+                  "invert(12%) sepia(43%) saturate(4922%) hue-rotate(320deg) brightness(95%) contrast(98%)",
+              }}
+              alt="learnItLogo"
+              width="32"
+              height="32"
+              className="m-2"
+            />
           </Nav.Link>
           <Button
             variant="secondary"
