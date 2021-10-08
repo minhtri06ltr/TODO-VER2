@@ -2,9 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+const bodyParser = require("body-parser");
 const authRouter = require("./routers/auth");
 const postRouter = require("./routers/post");
+const profileRouter = require("./routers/profile");
 
 const connectDB = async () => {
   try {
@@ -44,7 +45,15 @@ app.use(function (req, res, next) {
   );
   next();
 });
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(
+  bodyParser.urlencoded({
+    limit: "50mb",
+    extended: true,
+  }),
+);
 app.use(express.json());
+
 app.use(
   cors({
     origin: "*",
@@ -53,6 +62,7 @@ app.use(
 
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/profile", profileRouter);
 
 const PORT = process.env.PORT || 5000;
 

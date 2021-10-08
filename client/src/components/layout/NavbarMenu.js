@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import userIcon from "../../assets/person-circle.svg";
+import { UserContext } from "../../contexts/UserContext";
 const NavbarMenu = () => {
   const {
     authState: {
@@ -14,7 +15,9 @@ const NavbarMenu = () => {
     },
     logoutUser,
   } = useContext(AuthContext);
-
+  const {
+    imgState: { data },
+  } = useContext(UserContext);
   const logout = () => logoutUser();
 
   return (
@@ -41,7 +44,7 @@ const NavbarMenu = () => {
         <Nav className="mr-auto">
           <Nav.Link
             className="font-weight-bolder text-white"
-            to="/dashboard"
+            to="/dash-board"
             as={Link}
           >
             Dashboard
@@ -53,6 +56,13 @@ const NavbarMenu = () => {
           >
             About
           </Nav.Link>
+          <Nav.Link
+            className="font-weight-bolder text-white"
+            to="/profile"
+            as={Link}
+          >
+            Profile
+          </Nav.Link>
         </Nav>
 
         <Nav>
@@ -62,12 +72,9 @@ const NavbarMenu = () => {
           >
             Welcome {username}
             <img
-              src={userIcon}
-              style={{
-                filter:
-                  "invert(12%) sepia(43%) saturate(4922%) hue-rotate(320deg) brightness(95%) contrast(98%)",
-              }}
-              alt="learnItLogo"
+              src={data}
+              style={{ borderRadius: "50%" }}
+              alt="userAvatar"
               width="32"
               height="32"
               className="m-2"

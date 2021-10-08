@@ -59,6 +59,7 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
       username: usernameTyping,
       password: hashedPassword,
+      img: "",
     });
     await newUser.save();
     //when register successful - process login
